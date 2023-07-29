@@ -1,0 +1,21 @@
+.header_Container{
+  height: 60px;
+  background: #272727;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+img{
+  width: 34px;
+  height: 34px;
+  padding: 0 24px;
+}
+input{
+  padding: 0 5px;
+  width: 18%;
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px 1px #F4A84F;
+  border: none;
+  background-color: #AEA6A6;
+  outline: none;
+}
