@@ -12,10 +12,21 @@ img{
 }
 input{
   padding: 0 5px;
-  width: 18%;
+  width: 20%;
   border-radius: 5px;
   box-shadow: 1px 1px 10px 1px #F4A84F;
   border: none;
   background-color: #AEA6A6;
   outline: none;
+}
+.search-field{
+  width: 65%;
+}
+.select-types{
+  width: 25%;
+}
+.search-block{
+  width: 18%;
+  display: flex;
+  justify-content: space-between;
 }
