@@ -30,3 +30,16 @@ input{
   display: flex;
   justify-content: space-between;
 }
+.select-types{
+  background-color: #2e2b26;
+  border: none;
+  border-radius: 5px;
+  color: #ebe6d3;
+  &:focus{
+    outline: none;
+  }
+}
+.select-option{
+  border: none;
+  background-color: black;
+}
