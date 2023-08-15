@@ -3,6 +3,7 @@ import Header from "./components/UI/header/Header";
 import {Navigate, Route, Routes} from "react-router";
 import WelcomePage from "./components/UI/pages/WelcomePage";
 import MainPage from "./components/UI/workplace/mainPage/MainPage";
+import './App.scss'
 
 function App() {
   return (
