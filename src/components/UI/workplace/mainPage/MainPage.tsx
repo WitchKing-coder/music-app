@@ -11,13 +11,14 @@ const MainPage = () => {
 
     useEffect(() =>{
         async function getTracks () {
-            if (isSuccess){
+
                 let items = await GetTrackUrl(searchValue, searchType)|| []
                 setSrc(items)
-            }
+
         }
         getTracks()
     }, [searchType, searchValue])
+    setTimeout(() => console.log(isSuccess), 3000)
 
     return (
         <div className="home-container">
