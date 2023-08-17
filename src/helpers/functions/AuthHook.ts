@@ -6,5 +6,4 @@ enum authEnum {
 
 }
 const SCOPES = ['user-read-currently-playing', 'user-read-playback-state', 'streaming']
-// export const authSpotify = `${authEnum.AUTH_ENDPOINT}?client_id=${authEnum.CLIENT_ID}&redirect_uri=${authEnum.REDIRECT_URI}&response_type=${authEnum.RESPONSE_TYPE}`
 export const authSpotify = `${authEnum.AUTH_ENDPOINT}?client_id=${authEnum.CLIENT_ID}&redirect_uri=${authEnum.REDIRECT_URI}&scope=${SCOPES.join('%20')}&response_type=${authEnum.RESPONSE_TYPE}`;

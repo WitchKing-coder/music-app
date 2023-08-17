@@ -1,6 +1,6 @@
 export default interface ISearch {
-    track: string | undefined
-    artist: string | undefined
-    type: "track" | "playlist" | "album"
-    sources: string
+    tracks?: string[] | null
+    artist?: string | null
+    type?: "track" | "playlist" | "album" | "artist"
+    sources?: string
 }

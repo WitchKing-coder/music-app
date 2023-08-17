@@ -1,17 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import {useAppSelector} from "../../../../hooks/Redux";
-import {getTrackUrl} from "../../../../helpers/http/AsyncRequest";
+import {GetTrackUrl} from "../../../../helpers/http/AsyncRequest";
 import './MainPage.scss'
 
 const MainPage = () => {
     const searchValue = useAppSelector(state => state.nameReducer.value)
     const searchType = useAppSelector(state => state.nameReducer.type)
+    const isSuccess = useAppSelector(state => state.searchReducer.isSuccess)
     const [src, setSrc] = useState<string[]>([""])
 
     useEffect(() =>{
         async function getTracks () {
-            let items = await getTrackUrl(searchValue, searchType)|| []
-            setSrc(items)
+            if (isSuccess){
+                let items = await GetTrackUrl(searchValue, searchType)|| []
+                setSrc(items)
+            }
         }
         getTracks()
     }, [searchType, searchValue])
