@@ -35,16 +35,3 @@ export async function getTrackUrl(searchName: string, searchType: string): Promi
         return null;
     }
 }
-
-// перенести по разным файлам или как-то придумать компоновку
-export async function getCurrentSong() {
-    try {
-        spotifyApi.getMyCurrentPlayingTrack().then((response) => {
-            console.log(response)
-            }
-        )
-    }
-    catch (e) {
-        return null
-    }
-}
