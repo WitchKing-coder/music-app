@@ -1,6 +1,4 @@
 import SpotifyWebApi from 'spotify-web-api-node';
-import {useAppDispatch} from "../../hooks/Redux";
-import {searchFetching, searchFetchingError, searchFetchingSuccess} from "../../store/slices/SearchSlice";
 
 const hash = window.location.hash
 const access_token = hash.slice(hash.indexOf("=") + 1, hash.indexOf("&"))
@@ -10,11 +8,9 @@ const spotifyApi = new SpotifyWebApi({
 })
 spotifyApi.setAccessToken(access_token)
 export async function GetTrackUrl(searchName: string, searchType: string): Promise<string[] | null> {
-    const dispatch = useAppDispatch()
     var tracks;
     var response;
     try {
-        dispatch(searchFetching)
         switch (searchType){
             case "playlists":
                 response = await spotifyApi.searchPlaylists(searchName, { limit: 6 })
@@ -30,14 +26,11 @@ export async function GetTrackUrl(searchName: string, searchType: string): Promi
                 break
         }
         if (tracks && tracks.length) {
-            console.log(tracks.map(track => track.external_urls.spotify.substring(0, 25) + 'embed' + track.external_urls.spotify.substring(24)))
-            dispatch(searchFetchingSuccess(tracks.map(track => track.external_urls.spotify.substring(0, 25) + 'embed' + track.external_urls.spotify.substring(24))))
             return tracks.map(track => track.external_urls.spotify.substring(0, 25) + 'embed' + track.external_urls.spotify.substring(24))
         } else {
             return null;
         }
     } catch (err: any) {
-        dispatch(searchFetchingError(err))
         console.error('Ошибка при поиске трека:', err);
         return null;
     }

@@ -8,7 +8,6 @@ import {useNavigate} from "react-router";
 
 
 const Header = () => {
-    const [isOpenSettings, setIsOpenSettings] = useState<boolean>(false)
     const [searchType, setSearchType] = useState<string>("songs")
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -28,7 +27,7 @@ const Header = () => {
                     <option value="albums" className="select-option">albums</option>
                 </select>
             </div>
-            <img onClick={() => setIsOpenSettings(!isOpenSettings)} src={profileIcon} alt=""/>
+            <img onClick={() => navigate("/archive")} src={profileIcon} alt=""/>
         </div>
     );
 };
