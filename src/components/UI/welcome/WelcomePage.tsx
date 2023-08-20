@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import './WelcomePage.scss';
-import {authSpotify} from "../../../helpers/functions/AuthHook";
+import {authSpotify} from "../../../helpers/http/AuthHook";
 import {useNavigate} from "react-router";
 
 const WelcomePage = () => {
@@ -8,7 +8,7 @@ const WelcomePage = () => {
     useEffect(() => {
         if (sessionStorage.getItem('logged in'))
             navigate("/home")
-    }, [])
+    }, [navigate])
     function buttonClickHandler(){
         sessionStorage.setItem('logged in', 'true')
     }
