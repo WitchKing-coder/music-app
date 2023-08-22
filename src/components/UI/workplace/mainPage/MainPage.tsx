@@ -8,17 +8,18 @@ import {useDispatch} from "react-redux";
 const MainPage = () => {
     const searchValue = useAppSelector(state => state.nameReducer.value)
     const searchType = useAppSelector(state => state.nameReducer.type)
+    const songsLimit = useAppSelector(state => state.nameReducer.limit)
     const favouriteSongs = useAppSelector(state => state.favouriteReducer.src)
     const [src, setSrc] = useState<string[]>([""])
     const dispatch = useDispatch()
 
     useEffect(() =>{
         async function getTracks () {
-            let items = await GetTrackUrl(searchValue, searchType)|| []
+            let items = await GetTrackUrl(searchValue, searchType, songsLimit)|| []
             setSrc(items)
         }
         getTracks()
-    }, [searchType, searchValue])
+    }, [searchType, searchValue, songsLimit])
 
     function addToFavouriteHandler(item: string) {
         dispatch(addFavourite(item))

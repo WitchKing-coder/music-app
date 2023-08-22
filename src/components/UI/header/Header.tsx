@@ -4,16 +4,27 @@ import profileIcon from '../../../assets/images/profile.svg'
 import './Header.scss'
 import {useDispatch} from "react-redux";
 import {setUrl} from "../../../store/slices/SearchValue";
-import {useNavigate} from "react-router";
+import {useLocation, useNavigate} from "react-router";
 
 
 const Header = () => {
+    const location = useLocation()
     const [searchType, setSearchType] = useState<string>("songs")
+    const [limitSongs, setLimitSongs] = useState<string>("6")
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     function searchSpotifyHandler(value: string) {
-        dispatch(setUrl([value, searchType]))
+        dispatch(setUrl([value, searchType, limitSongs]))
+    }
+
+    function setLimitSongsHandler(value: string) {
+        if (+value < 1)
+            setLimitSongs("1")
+        else if (+value > 20)
+            setLimitSongs("20")
+        else
+            setLimitSongs(value)
     }
 
     return (
@@ -26,8 +37,9 @@ const Header = () => {
                     <option value="playlists" className="select-option">playlists</option>
                     <option value="albums" className="select-option">albums</option>
                 </select>
+                <input value={limitSongs} onChange={(e) => setLimitSongs(e.target.value)} onBlur={(e) => setLimitSongsHandler(e.target.value)} className="limit-songs" type="number" min="1" max="20" placeholder="лимит"/>
             </div>
-            <img onClick={() => navigate("/archive")} src={profileIcon} alt=""/>
+            <img onClick={() => navigate(location.pathname === "/archive" ? "/home" : "/archive")} src={profileIcon} alt=""/>
         </div>
     );
 };

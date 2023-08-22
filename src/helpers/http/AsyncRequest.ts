@@ -7,21 +7,21 @@ const spotifyApi = new SpotifyWebApi({
     clientSecret: 'a6338157c9bb5ac9c71924cb2940e1a7',
 })
 spotifyApi.setAccessToken(access_token)
-export async function GetTrackUrl(searchName: string, searchType: string): Promise<string[] | null> {
+export async function GetTrackUrl(searchName: string, searchType: string, songsLimit: string): Promise<string[] | null> {
     var tracks;
     var response;
     try {
         switch (searchType){
             case "playlists":
-                response = await spotifyApi.searchPlaylists(searchName, { limit: 6 })
+                response = await spotifyApi.searchPlaylists(searchName, { limit: +songsLimit })
                 tracks = response.body.playlists?.items;
                 break
             case "songs":
-                response = await spotifyApi.searchTracks(searchName, { limit: 6 })
+                response = await spotifyApi.searchTracks(searchName, { limit: +songsLimit })
                 tracks = response.body.tracks?.items;
                 break
             case "albums":
-                response = await spotifyApi.searchAlbums(searchName, { limit: 6 })
+                response = await spotifyApi.searchAlbums(searchName, { limit: +songsLimit })
                 tracks = response.body.albums?.items;
                 break
         }
