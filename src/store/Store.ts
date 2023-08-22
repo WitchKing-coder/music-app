@@ -1,12 +1,12 @@
 import {configureStore} from "@reduxjs/toolkit";
 import getValueUrl from "./slices/SearchValue";
-import getSearchStatus from './slices/SearchSlice'
+import changeFavourites from './slices/FavouriteSongs';
 
 
 export const store =  configureStore({
         reducer: {
             nameReducer: getValueUrl,
-            searchReducer: getSearchStatus,
+            favouriteReducer: changeFavourites,
         },
     })
 

@@ -2,3 +2,18 @@
   background: #12110e;
   height: 100vh;
 }
+body{
+  &::-webkit-scrollbar {
+    width: 1em;
+    background: #12110e;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #272727;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #AEA6A6;
+    border-radius: 10px;
+  }
+}
