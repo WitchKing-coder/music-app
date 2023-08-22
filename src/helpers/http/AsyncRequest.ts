@@ -1,7 +1,4 @@
 import SpotifyWebApi from 'spotify-web-api-node';
-import {useAppSelector} from "../../hooks/Redux";
-import {useDispatch} from "react-redux";
-import {searchFetching, searchFetchingError, searchFetchingSuccess} from "../../store/slices/SearchSlice";
 
 const hash = window.location.hash
 const access_token = hash.slice(hash.indexOf("=") + 1, hash.indexOf("&"))
@@ -10,34 +7,30 @@ const spotifyApi = new SpotifyWebApi({
     clientSecret: 'a6338157c9bb5ac9c71924cb2940e1a7',
 })
 spotifyApi.setAccessToken(access_token)
-export async function GetTrackUrl(searchName: string, searchType: string): Promise<string[] | null> {
-    const dispatch = useDispatch()
+export async function GetTrackUrl(searchName: string, searchType: string, songsLimit: string): Promise<string[] | null> {
     var tracks;
     var response;
     try {
-        dispatch(searchFetching)
         switch (searchType){
             case "playlists":
-                response = await spotifyApi.searchPlaylists(searchName, { limit: 6 })
+                response = await spotifyApi.searchPlaylists(searchName, { limit: +songsLimit })
                 tracks = response.body.playlists?.items;
                 break
             case "songs":
-                response = await spotifyApi.searchTracks(searchName, { limit: 6 })
+                response = await spotifyApi.searchTracks(searchName, { limit: +songsLimit })
                 tracks = response.body.tracks?.items;
                 break
             case "albums":
-                response = await spotifyApi.searchAlbums(searchName, { limit: 6 })
+                response = await spotifyApi.searchAlbums(searchName, { limit: +songsLimit })
                 tracks = response.body.albums?.items;
                 break
         }
         if (tracks && tracks.length) {
-            dispatch(searchFetchingSuccess(tracks.map(track => track.external_urls.spotify.substring(0, 25) + 'embed' + track.external_urls.spotify.substring(24))))
             return tracks.map(track => track.external_urls.spotify.substring(0, 25) + 'embed' + track.external_urls.spotify.substring(24))
         } else {
             return null;
         }
     } catch (err: any) {
-        dispatch(searchFetchingError(err))
         console.error('Ошибка при поиске трека:', err);
         return null;
     }

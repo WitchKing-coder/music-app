@@ -20,13 +20,13 @@ input{
   outline: none;
 }
 .search-field{
-  width: 65%;
+  width: 52%;
 }
 .select-types{
-  width: 25%;
+  width: 18%;
 }
 .search-block{
-  width: 18%;
+  width: 25%;
   display: flex;
   justify-content: space-between;
 }
@@ -42,4 +42,7 @@ input{
 .select-option{
   border: none;
   background-color: black;
+}
+.limit-songs{
+  width: 18%;
 }
