@@ -1,0 +1,42 @@
+.musics{
+  background-color: #12110e;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+.music-player{
+  border: none;
+  margin-top: 5px;
+  width: 90%;
+}
+.songs-controller{
+  grid-area: songs-controller;
+}
+.home-container{
+  text-align: center;
+}
+.music-frame{
+  margin-top: 20px;
+}
+.current-song{
+  width: 40%;
+  margin: 0 auto;
+}
+.favourite-song{
+  width: 100%;
+  border-radius: 9px;
+  background: #F4A84F;
+  border: none;
+}
+.remove-favourite{
+  width: 100%;
+  border-radius: 9px;
+  background: #AEA6A6;
+  border: none;
+}
+.song-menu{
+  display: flex;
+  gap: 10px;
+}
