@@ -10,12 +10,13 @@ const WelcomePage = () => {
             navigate("/home")
     }, [navigate])
     function buttonClickHandler(){
+        window.location.href = authSpotify
         sessionStorage.setItem('logged in', 'true')
     }
     return (
         <div className="welcome-page-container">
-            <button className="start-button">
-                <a className="start-button-text" onClick={buttonClickHandler} href={authSpotify}>Start</a>
+            <button formAction={authSpotify} onClick={buttonClickHandler} className="start-button">
+                Start
             </button>
         </div>
     );
